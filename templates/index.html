@@ -1,0 +1,92 @@
+  <html>
+  <head>
+    <title>Rain Prediction</title>
+  </head>
+  <body>
+    <h1>Rain Prediction</h1>
+    <form action="/predict" method="POST">
+      <label for="location">Location:</label>
+      <select name="location" id="location">
+        <option value="0">London</option>
+        <option value="1">Paris</option>
+        <option value="2">New York</option>
+        <option value="3">Tokyo</option>
+        <option value="4">Beijing</option>
+        <option value="5">Istanbul</option>
+        <option value="6">Moscow</option>
+        <option value="7">Berlin</option>
+        <option value="8">Bangkok</option>
+        <option value="9">Seoul</option>
+        <option value="10">Mumbai</option>
+        <option value="11">Rome</option>
+        <option value="12">Madrid</option>
+        <option value="13">Mexico City</option>
+        <option value="14">Shanghai</option>
+        <option value="15">Rio de Janeiro</option>
+        <option value="16">Los Angeles</option>
+        <option value="17">Buenos Aires</option>
+        <option value="18">Sydney</option>
+        <option value="19">Johannesburg</option>
+      </select><br><br>
+
+      <label for="min_temp">Minimum Temperature (C):</label>
+      <input type="number" id="min_temp" name="min_temp"><br><br>
+
+      <label for="max_temp">Maximum Temperature (C):</label>
+      <input type="number" id="max_temp" name="max_temp"><br><br>
+
+      <label for="wind_dir">Wind Direction:</label>
+      <input type="range" name="wind_dir" id="wind_dir" min="0" max="360" value="0" step="1" oninput="updateWindDir(this.value)">
+      <span id="wind_dir_value">0° - Blowing from the North</span><br><br>
+
+      <label for="wind_speed">Wind Speed (m/s):</label>
+      <input type="number" id="wind_speed" name="wind_speed"><br><br>
+
+      <label for="humidity">Humidity (%):</label>
+      <input type="number" id="humidity" name="humidity"><br><br>
+
+      <label for="pressure">Pressure (hPa):</label>
+      <input type="number" id="pressure" name="pressure"><br><br>
+
+      <label for="cloud">Cloud (%):</label>
+      <input type="number" id="cloud" name="cloud"><br><br>
+
+      <label for="temp">Temperature (C):</label>
+      <input type="number" id="temp" name="temp"><br><br>
+
+      <label for="today_rain">Today Rain:</label>
+      <select name="today_rain" id="today_rain">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+      </select><br><br>
+
+      <input type="submit" value="Predict">
+
+    </form>
+    <h2>Prediction :</h2>
+    {{prediction}}
+</body>
+<script>
+    function updateWindDir(value) {
+      var label;
+      if (value == 0) {
+        label = "0° - Blowing from the North";
+      } else if (value == 45) {
+        label = "45° - Blowing from the North East";
+      } else if (value == 90) {
+        label = "90° - Blowing from the East";
+        } else if (value == 135) {
+        label = "135° - Blowing from the South East";
+      } else if (value == 180) {
+        label = "180° - Blowing from the South";
+        } else if (value == 225) {
+        label = "225° - Blowing from the South West";
+      } else if (value == 270) {
+        label = "270° - Blowing from the West";
+      } else {
+        label = value + "°";
+      }
+      document.getElementById("wind_dir_value").innerHTML = label;
+    }
+</script>
+</html>
